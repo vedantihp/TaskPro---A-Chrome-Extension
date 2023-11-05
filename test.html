@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+    body {
+    margin: 0;
+    background: no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-shadow: 0px 0px 20px #242424;
+    font-family: 'Roboto', sans-serif; 
+    color: black;
+    }
+
+    #todo-widget {
+    margin-left: 10px; 
+  }
+  
+    #task-input {
+    width: 20%; 
+  }
+  
+    #task-list {
+    width: 20%; 
+  }
+
+    .top{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    }
+
+    .time {
+    font-size: 2em;
+    text-align: center;
+    }
+
+    #greeting {
+    font-size: 3em;
+    align-items: center;
+    margin: auto;
+    }
+
+    #calendar-container {
+    margin-top: 1000px;
+    text-align: right;
+    margin: 10 ;
+  }
+    </style>
+    <title>Dashboard</title>
+</head>
+<body>
+    <script >
+        //Greetings and Time
+    fetch("https://api.unsplash.com/photos/random/?client_id=")
+    .then(res => res.json())
+    .then(data => {
+        document.body.style.backgroundImage = `url(${data.urls.regular})`;
+        document.getElementById("author").textContent = `By: ${data.user.name}`;
+    });
+    
+    let timeDisplay = document.getElementById("time");
+    let greeting = document.getElementById("greeting");
+    
+    function currentTime() {
+        const date = new Date();
+        timeDisplay.textContent = date.toLocaleTimeString("en-us", { timeStyle: "medium" })
+        if (date.toLocaleTimeString("en-us", { timestyle: "long" }).includes("PM")) {
+            greeting.textContent = "Good evening!";
+        } else {
+            greeting.textContent = "Good morning!";
+        };
+    };
+    
+    setInterval(currentTime, 1000);
+    
+    
+    // To-Do List
+    const taskInput = document.getElementById("task-input");
+            const taskList = document.getElementById("task-list");
+            const printButton = document.getElementById("print-button");
+    
+            let tasks = [];
+    
+            function addTask(taskText) {
+                tasks.push({ text: taskText, completed: false });
+                updateTaskList();
+            }
+    
+            function updateTaskList() {
+                taskList.innerHTML = "";
+                tasks.forEach((task, index) => {
+                    const taskItem = document.createElement("li");
+                    taskItem.innerHTML = `
+                        <input type="checkbox" id="checkbox-${index}" ${task.completed ? "checked" : ""}>
+                        <label for="checkbox-${index}">${task.text}</label>
+                        <button class="delete-button" data-index="${index}">Delete</button>`;
+                    taskItem.querySelector(".delete-button").addEventListener("click", deleteTask);
+                    taskItem.querySelector("input[type='checkbox']").addEventListener("change", toggleTask);
+                    taskList.appendChild(taskItem);
+                });
+            }
+    
+            function deleteTask(event) {
+                const index = event.target.getAttribute("data-index");
+                tasks.splice(index, 1);
+                updateTaskList();
+            }
+    
+            function toggleTask(event) {
+                const index = parseInt(event.target.getAttribute("id").split("-")[1]);
+                tasks[index].completed = !tasks[index].completed;
+                updateTaskList();
+            }
+    
+            function printToDoList() {
+                const printableList = tasks.map(task => `Task: ${task.text} | Completed: ${task.completed ? "Yes" : "No"}`).join('\n');
+                const printWindow = window.open('', '', 'width=600,height=600');
+                printWindow.document.open();
+                printWindow.document.write('<html><head><title>To-Do List</title></head><body>');
+                printWindow.document.write('<h1>To-Do List</h1>');
+                printWindow.document.write(`<pre>${printableList}</pre>`);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close();
+                printWindow.print();
+            }
+    
+            printButton.addEventListener("click", printToDoList);
+    
+            taskInput.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" && taskInput.value.trim() !== "") {
+                    addTask(taskInput.value.trim());
+                    taskInput.value = "";
+                }
+            });
+    
+            updateTaskList();
+    
+    
+    //Calendar
+      const calendarFrame = document.querySelector('iframe');
+      calendarFrame.addEventListener('click', () => {
+        alert('Calendar clicked!');
+      });
+    
+      
+        </script>
+    <main>    
+        <div class="top">
+            <div id="greeting"></div>
+            <h1 id="time" class="time"></h1>
+        </div>
+        
+        
+        <p id="author"></p>
+        <div id="todo-widget">
+            <input type="text" id="task-input" placeholder="Add a new task">
+            <ul id="task-list"></ul>
+            <button id="print-button">PRINT</button>
+          </div>
+    </main>
+    
+<iframe src="https://calendar.google.com/calendar/embed?src=en.indian%23holiday%40group.v.calendar.google.com&ctz=Asia%2FKolkata" style="border: 10" width="400" height="400" frameborder="0" scrolling="no"></iframe>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+/>
+<!-- Google Fonts -->
+<link
+    href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+    rel="stylesheet"
+/>  <link rel="stylesheet" href="exp.css" />
+    <title>Dashboard</title>
+</head>
+<body>
+      
+    <main> 
+        <div class="slider">
+            <div class="load">
+                <div class="top">
+                    <div id="greeting"></div>
+                <h1 id="clocktime" class="clocktime"></h1>
+                    </div>
+
+                <div id="notes-widget">
+            <textarea id="note-input" placeholder="Add your notes here"></textarea>
+            <button id="save-button">Save</button>
+            <div id="notes-list"></div>
+            </div>
+            <div id="todo-widget">
+            <input type="text" id="task-input" placeholder="Add a new task">
+            <ul id="task-list"></ul>
+            <button id="print-button">PRINT</button>
+            <br>
+            <br>
+            <br>
+            <br>
+            </div>
+
+            <div id="pomodoro-app">
+            <div id="container">
+              <div id="timer">
+                <div id="time">
+                  <span id="minutes">25</span>
+                  <span id="colon">:</span>
+                  <span id="seconds">00</span>
+                </div>
+             <div id="filler"></div>
+                </div>
+          
+                <div id="buttons">
+                <button id="work">Work</button>
+                <button id="shortBreak">Short Break</button>
+                <br>
+                <button id="longBreak">Long Break</button>
+                <button id="stop">Stop</button>
+                </div>
+            </div>
+            </div>
+            
+            <iframe src="https://calendar.google.com/calendar/embed?height=300&wkst=1&bgcolor=%23f5f5dd&ctz=Asia%2FKolkata&showTabs=0&src=dmVkYW50aWhwQGdtYWlsLmNvbQ&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=Y2xhc3Nyb29tMTExNjYxNzM1Mzg5ODU2MDcwMzA4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTA1MzcyODg2MDI5NTk4NDIwMTM4QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTEwMTM3Njc3ODE1NTUyMTkxNjk1QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTAwMjQ2MjU2MzU4MjQxNDMxNDY3QGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=Y2xhc3Nyb29tMTExMjE2NDM1NDUwMzUwNDA2ODYzQGdyb3VwLmNhbGVuZGFyLmdvb2dsZS5jb20&src=ZW4uaW5kaWFuI2hvbGlkYXlAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&color=%23039BE5&color=%2333B679&color=%23202124&color=%230047a8&color=%230047a8&color=%23c26401&color=%23c26401&color=%23cccccc"  style="border:solid 1px #777" width="300" height="300" frameborder="0" scrolling="no"></iframe>        
+
+        
+            <br>
+            <br>
+          <a class="logo" href="https://www.instagram.com/accounts/login/?next=https%3A%2F%2Faccountscenter.instagram.com%2F%3F__coig_login%3D1" target="_blank">
+            <img src="instagram.jpg" alt="Instagram">
+            </a>
+            <a class="logo" href="https://web.whatsapp.com/" target="_blank">
+                <img src="whatsapp.jpg" alt="WhatsApp">
+            </a>
+            <a class="logo" href="https://twitter.com/i/flow/login" target="_blank">
+                <img src="twitter.jpg" alt="Twitter">
+            </a>
+            <a class="logo" href="https://accounts.spotify.com/en/status?flow_ctx=6f228537-72f8-495a-9d68-b8923fd0ff0d%3A1698257256" target="_blank">
+                <img src="spotify.jpg" alt="Spotify">
+            </a><br>
+            <audio id="sound"></audio>
+            <div class="dict">
+                <div class="search-box">
+                    <input type="text" placeholder="Type the word here.." id="inp-word"/>
+                    <button id="search-btn">Search</button>
+                </div>
+                <div class="result" id="result"></div>
+            </div>
+        </div>
+    </main>
+    
+
+<script src="exp.js"></script>
+
+</body>
+</html>
+
+
+
+    
+ 
